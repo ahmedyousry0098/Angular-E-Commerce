@@ -1,1 +1,43 @@
 /* You can add global styles to this file, and also import other style files */
+
+* {
+    box-sizing: border-box;
+}
+
+.cursor-pointer {
+    cursor: pointer !important;
+}
+
+.nav-btn:hover {
+    background-color: #009587;
+    transition: 0.5s;
+    opacity: 0.5;
+    border-radius: 10px;
+}
+
+.nav-btn-active {
+    background-color: #009587 !important;
+    border-radius: 10px;
+}
+
+.desc-text {
+    color: #9d9c9c;
+    font-size: 14px !important;
+}
+
+.grid-gap-cus {
+    gap: 20px 20px !important;
+    /* row-gap: 50px !important; */
+    
+}
+
+.shadow-box {
+    box-shadow: 0 0 10px 5px;
+}
+
+.stock-container {
+    text-align: center;
+    left: 5px;
+    top: 5px;
+}
+

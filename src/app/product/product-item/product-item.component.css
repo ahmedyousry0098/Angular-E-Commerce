@@ -1,0 +1,12 @@
+.sub-img:hover {
+    opacity: 0.8;
+}
+
+.grayBtn {
+    background-color: #cccbcb;
+
+}
+
+.grayBtn:hover {
+    opacity: 0.8;
+}

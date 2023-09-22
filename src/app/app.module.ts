@@ -3,14 +3,25 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { AuthModule } from './auth/auth.module';
+import { ProductModule } from './product/product.module';
+import { NavbarComponent } from './shared/navbar/navbar.component';
+import { SharedModule } from './shared/shared.module';
+import { HttpClientModule } from '@angular/common/http';
+import { EgpCurrencyPipe } from './pipes/egp-currency.pipe';
+import { ApplydiscountPipe } from './pipes/applydiscount.pipe';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    SharedModule,
+    AuthModule,
+    ProductModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
