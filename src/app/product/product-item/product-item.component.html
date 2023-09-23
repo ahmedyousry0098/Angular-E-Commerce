@@ -1,7 +1,7 @@
-<div class="container d-flex flex-row align-items-center w-100">
+<div class="container d-flex flex-row align-items-center w-100 mt-3">
     <div class="d-flex flex-column" style="width:40%">
         <div class="my-3 mx-auto w-100">
-            <img [src]="product?.thumbnail" class="w-100 rounded-2"/>
+            <img [src]="product.thumbnail" class="w-100 rounded-2"/>
         </div>
         <div class="d-flex align-items-center justify-content-between">
             <img *ngFor="let img of product?.images?.slice(0,3)" [src]="img" style="width:100px; height:50px" class="me-1 sub-img" /> 
@@ -10,22 +10,22 @@
     <div class="d-flex flex-column justify-content-center align-items-center mx-auto">
         <div class="card">
             <div class="card-body">
-                <h5 class="card-title">{{product?.title}}</h5>
-                <p class="card-text desc-text">{{product?.description}}</p>
+                <h5 class="card-title">{{product.title}}</h5>
+                <p class="card-text desc-text">{{product.description}}</p>
                 <div class="card-text desc-text">
                     <i class="fa fa-star rating-color"></i>
                     <i class="fa fa-star rating-color"></i>
                     <i class="fa fa-star rating-color"></i>
                     <i class="fa fa-star rating-color"></i>
-                    <span class="ms-2">( {{product?.rating}} )</span>
+                    <span class="ms-2">( {{product.rating}} )</span>
                 </div>
                 <hr class="my-4 px-0 mx-0">
                 <p class="card-text" >
-                    <span [ngClass]="product?.discountPercentage? 'text-decoration-line-through tex desc-text': 'text-success'">{{product!.price|egpCurrency:31|currency:'EGP'}}</span>
+                    <span [ngClass]="product.discountPercentage? 'text-decoration-line-through tex desc-text': 'text-success'">{{product!.price|egpCurrency:31|currency:'EGP'}}</span>
                     <span *ngIf="product?.discountPercentage" class="text-success"> {{product!.price|applydiscount:product!.discountPercentage|egpCurrency:31|currency:'EGP'}} </span>
                 </p>
                 <hr class="my-4 px-0 mx-0">
-                <div class="stock-container rounded-3 px-2 pb-0 my-2" [ngClass]="product?.stock?'bg-success': 'bg-danger'">
+                <div class="stock-container rounded-3 px-2 pb-0 my-2" [ngClass]="product.stock?'bg-success': 'bg-danger'">
                     <p style="color:white" class="p-0 m-0" *ngIf="!product?.stock">Out Of Stock</p>
                     <p style="color:white" class="p-0 m-0" *ngIf="product?.stock">In Stock</p>
                 </div>
@@ -35,13 +35,13 @@
                     <a class="btn btn-secondary me-2">Brand</a>
                 </div>
                 <div class="my-4">
-                    <button [disabled]="quantity>=product!.stock" (click)="increaseQuantity()" class="p-3 grayBtn rounded-3 border-0"><i class="fa-solid fa-plus"></i></button>
+                    <button [disabled]="quantity>=product.stock" (click)="increaseQuantity()" class="p-3 grayBtn rounded-3 border-0"><i class="fa-solid fa-plus"></i></button>
                     <span class="p-3">{{quantity}}</span>
                     <button [disabled]="quantity<=0" (click)="decreaseQuantity()" class="p-3 grayBtn rounded-3 border-0"><i class="fa-solid fa-minus"></i></button>
                 </div>
                 <div class="my-2">
-                    <button class="btn btn-success rounded-3 me-3">Buy Now</button>
-                    <button class="btn btn-outline-success">Add To Cart</button>
+                    <button class="btn btn-success rounded-3 me-3" [disabled]="!quantity">Buy Now</button>
+                    <button class="btn btn-outline-success" [disabled]="!quantity">Add To Cart</button>
                 </div>
             </div>
           </div>

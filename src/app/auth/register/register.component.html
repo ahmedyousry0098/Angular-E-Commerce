@@ -1,1 +1,58 @@
-<p>register works!</p>
+<div id="registerForm" class="w-100 vh-100 mx-auto rounded-2 p-5 d-flex flex-column justify-content-center align-items-center row">    
+    <div class="greenBgc position-absolute top-0 start-0 w-100 h-50 z-0"></div> 
+    <div class="grayBgc position-absolute top-50 start-0 w-100 z-0 "></div> 
+    <div class="z-1 col-lg-4 col-md-8 col-sm-12 d-flex flex-column bg-white rounded-5 p-5 row position-relative shadow-box">
+        <h2 class="mx-auto text z-1">Register Now</h2>
+        <form (ngSubmit)="handleRegister()" [formGroup]="registerForm" class=" mx-auto z-1 w-100">
+            <div class="mb-3">
+                <label for="username">Username</label>
+                <input id="username" formControlName="username" class="form-control my-1" type="text" placeholder="usename.."/>
+                <div *ngIf="registerForm.get('username')?.errors && registerForm.get('username')?.touched" class="alert alert-danger p-1">
+                    <p *ngIf="registerForm.get('username')?.getError('required')" class="m-0 border-0 err-text">Username is required</p>
+                    <p *ngIf="registerForm.get('username')?.getError('minlength')" class="m-0 border-0 err-text">min length is 3 characters</p>
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="email">email</label>
+                <input id="email" formControlName="email" class="form-control my-1" type="email" placeholder="email.."/>
+                <div *ngIf="registerForm.get('email')?.errors && registerForm.get('email')?.touched" class="alert alert-danger p-1">
+                    <p *ngIf="registerForm.get('email')?.getError('required')" class="m-0 border-0 err-text">email is required</p>
+                    <p *ngIf="registerForm.get('email')?.getError('email')" class="m-0 border-0 err-text">In-valid email</p>
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="password">password</label>
+                <input id="password" formControlName="password" class="form-control my-1" type="text" placeholder="password.."/>
+                <div *ngIf="registerForm.get('password')?.errors && registerForm.get('password')?.touched" class="alert alert-danger p-1">
+                    <p *ngIf="registerForm.get('password')?.getError('required')" class="m-0 border-0 err-text">Password is required</p>
+                    <p *ngIf="registerForm.get('password')?.getError('pattern')" class="m-0 border-0 err-text">In-valid password Pattern</p>
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="confirm-password">Confirm Password</label>
+                <input id="confirm-password" formControlName="confirm_password" class="form-control my-1" type="text" placeholder="confirm-password.."/>
+                <div *ngIf="registerForm.get('confirm_password')?.errors && registerForm.get('confirm_password')?.touched" class="alert alert-danger p-1">
+                    <p *ngIf="registerForm.get('confirm_password')?.getError('required')" class="m-0 border-0 err-text">confirm-password is required</p>
+                    <p *ngIf="registerForm.get('confirm_password')?.getError('pattern')" class="m-0 border-0 err-text">In-valid confirm-password Pattern</p>
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="phone">phone</label>
+                <input id="phone" formControlName="phoneNumber" class="form-control my-1" type="tel" placeholder="phone number"/>
+                <div *ngIf="registerForm.get('phoneNumber')?.errors && registerForm.get('phoneNumber')?.touched" class="alert alert-danger p-1">
+                    <p *ngIf="registerForm.get('phoneNumber')?.getError('required')" class="m-0 border-0 err-text">Phone Number is required</p>
+                    <p *ngIf="registerForm.get('phoneNumber')?.getError('pattern')" class="m-0 border-0 err-text">In-valid Egyptian Phone Number</p>
+                </div>
+            </div>
+    
+            <button type="submit" class="btn btn-outline-primary mx-auto d-block w-50" [disabled]="registerForm.invalid">
+                <span *ngIf="!isLoading"> Register </span>
+                <span *ngIf="isLoading" class="spinner-border" style="height: 30px; width: 30px;"></span>
+            </button>
+
+            <p class="text-center my-2">Already Have Account <span class="text-primary" style="cursor: pointer;" routerLink="/login">Login</span></p>
+        </form>
+
+    </div>
+    <div *ngIf="reqRejection" class="alert alert-danger position-absolute w-50 text-center mx-auto" style="width:20% !important;top:50%; left:5%">{{reqRejection}}</div>
+</div>

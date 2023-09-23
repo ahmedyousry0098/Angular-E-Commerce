@@ -33,7 +33,7 @@
 }
 
 .shadow-box {
-    box-shadow: 0 0 10px 5px;
+    box-shadow: 0 0 10px 5px rgb(0 0 0/.3);
 }
 
 .stock-container {
@@ -44,4 +44,12 @@
 
 .rating-color {
     color:#198754
+}
+
+.greenBgc {
+    background-color: #009587;
+}
+
+.grayBgc {
+    background-color: #E2E2E2;
 }

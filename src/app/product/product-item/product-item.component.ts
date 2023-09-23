@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute} from '@angular/router'
 import { ProductService } from '../product.service';
-import { IProduct } from 'src/app/interfaces/product.interface';
-import { range } from 'rxjs';
+import { IProduct } from '../interfaces/product.interface';
 
 @Component({
   selector: 'app-product-item',
@@ -15,14 +14,14 @@ export class ProductItemComponent implements OnInit {
     private _ProductService: ProductService
   ) {}
   productId: number = Number(this._ActivatedRoute.snapshot.params['id'])
-  product?: IProduct
+  product!: IProduct
   quantity: number = 0
 
   ngOnInit() {
     this._ProductService.getProducts().subscribe({
       next: (prods) => {
         const products = prods as IProduct[] 
-        const product = products.find(prod => prod.id == this.productId)
+        const product = products.find(prod => prod.id == this.productId) as IProduct
         this.product = product
       }
     })

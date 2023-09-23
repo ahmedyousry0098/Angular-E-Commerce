@@ -1,1 +1,56 @@
-<p>login works!</p>
+<div id="loginForm" class="w-100 vh-100 mx-auto rounded-2 p-5 d-flex flex-column justify-content-center align-items-center row">    
+    <div class="greenBgc position-absolute top-0 start-0 w-100 h-50 z-0"></div> 
+    <!-- <div class="grayBgc position-absolute top-50 start-0 w-100 h-50 z-0"></div>  -->
+    <div class="z-1 col-lg-4 col-md-8 col-sm-12 d-flex flex-column bg-white rounded-5 p-5 row position-relative shadow-box">
+        <h2 class="mx-auto text z-1">Register Now</h2>
+        <form (ngSubmit)="handleLogin(loginForm)" #loginForm="ngForm" class=" mx-auto z-1 w-100">
+           
+            <div class="mb-3">
+                <label for="email" class="form-label">email</label>
+                <input
+                    type="email"
+                    class="form-control"
+                    id="email"
+                    aria-describedby="nameHelp"
+                    name="email"
+                    ngModel
+                    #email="ngModel"
+                    required
+                    minlength="3"
+                />
+                <div *ngIf="email.touched && email.invalid" class="alert alert-danger p-1 mt-2">
+                    <p *ngIf="email.errors?.['required']" class="m-0 border-0 err-text">email is required</p>
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                <input
+                    type="password"
+                    class="form-control"
+                    id="password"
+                    aria-describedby="nameHelp"
+                    name="password"
+                    ngModel
+                    #password="ngModel"
+                    required
+                    minlength="3"
+                    pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()_+])[A-Za-z\d!@#$%^&*()_+]{8,}$"
+                />
+                <div *ngIf="password.touched && password.invalid" class="alert alert-danger p-1 mt-2">
+                    <p *ngIf="password.errors?.['required']" class="m-0 border-0 err-text">Password is required</p>
+                    <p *ngIf="password.errors?.['pattern']" class="m-0 border-0 err-text">In-valid Password pattern</p>
+                </div>
+            </div>
+    
+            <button type="submit" class="btn btn-outline-primary mx-auto d-block w-50" [disabled]="loginForm.invalid">
+                <span *ngIf="!isLoading"> Register </span>
+                <span *ngIf="isLoading" class="spinner-border" style="height: 30px; width: 30px;"></span>
+            </button>
+
+            <p class="text-center my-2">Don't Have Account <span class="text-primary" style="cursor: pointer;" routerLink="/register">register</span></p>
+        </form>
+
+    </div>
+    <div *ngIf="reqRejection" class="alert alert-danger position-absolute w-50 text-center mx-auto" style="width:20% !important;top:50%; left:5%">{{reqRejection}}</div>
+</div>
