@@ -1,19 +1,27 @@
 <div class="row">
     <div *ngFor="let product of products" class="col-lg-3 col-md-6 col-sm-12 g-3">
         <div class="card rounded-3 p-3 position-relative" style="height: 550px">
-            <div class="stock-container rounded-3 px-2 pb-0" [ngClass]="product.stock?'bg-success': 'bg-danger'">
+            <div class="stock-container rounded-3 px-2 pb-0 position-absolute" [ngClass]="product.stock?'bg-success': 'bg-danger'">
                 <p style="color:white" class="p-0 m-0" *ngIf="!product.stock">Out Of Stock</p>
                 <p style="color:white" class="p-0 m-0" *ngIf="product.stock">In Stock</p>
             </div>
-            <img [src]="product.thumbnail" class="card-img img-fluid " style="height: 200px;" (click)="emitProdId(product.id)">
+            <img [src]="product.thumbnail" class="card-img img-fluid " style="height: 180px;" (click)="emitProdId(product.id)">
             <div class="card-body cursor-pointer" (click)="emitProdId(product.id)">
-                <div class="d-flex flex-row justify-content-between my-3">
+                <div class="d-flex flex-row justify-content-center my-3" style="height:20%">
                     <p class="card-text fs-5 m-0 fw-bold">{{product.title}}</p>
-                    <p class="card-text fs-6 m-0 fw-bold text-success">{{product.price|egpCurrency:31|currency:'EGP'}}</p>
+                </div>
+                <hr>
+                <p class="card-text fs-6 mt-0 fw-bold text-success text-center mb-2">{{product.price|egpCurrency:31|currency:'EGP'}}</p>
+                <div class="card-text desc-text text-center my-2">
+                    <i class="fa fa-star rating-color"></i>
+                    <i class="fa fa-star rating-color"></i>
+                    <i class="fa fa-star rating-color"></i>
+                    <i class="fa fa-star rating-color"></i>
+                    <span class="ms-2">({{product.rating}} )</span>
                 </div>
                 <p class="card-text desc-text">{{product.description}}</p>
             </div>
-            <button class="btn btn-outline-primary w-50 mx-auto mb-2">Add To Cart</button>
+            <button class="btn btn-outline-success w-50 mx-auto mb-2">Add To Cart</button>
         </div>
     </div>
 </div>
