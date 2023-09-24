@@ -1,1 +1,39 @@
-<p>cart works!</p>
+<div class="container my-5" *ngIf="cart.length; else emptyCart">
+    <h2>Cart:</h2>
+    <div *ngIf="cart.length" class="w-100">
+        <div class="row mx-1">
+            <p class="col-lg-5 text-center m-0 p-0 border-end">Description</p>
+            <p class="col-lg-3 text-center m-0 p-0 border-end">Quantity</p>
+            <p class="col-lg-2 text-center m-0 p-0 border-end">Remove</p>
+            <p class="col-lg-2 text-center m-0 p-0">price</p>
+        </div>
+        <div *ngFor="let product of cart" class="card d-flex justify-content-center my-2 card-shadow rounded-3">
+            <div class="row w-100">
+                <div class="desc d-flex flex-row col-5">
+                    <img [src]="product.thumbnail" class="card-img col-6 w-25 me-3">
+                    <p class="p-0 m-0 h5 col-6 text-center my-auto"> {{product.title}} </p>
+                </div>
+                <div class="my-4 col-3 d-flex align-items-center justify-content-center ">
+                    <button [disabled]="product.quantity>=product.stock" (click)="increaseQuantity(product.id)" class="p-3 grayBtn rounded-3 border-0"><i class="fa-solid fa-plus"></i></button>
+                    <span class="p-3">{{product.quantity}}</span>
+                    <button [disabled]="product.quantity<=1" (click)="decreaseQuantity(product.id)" class="p-3 grayBtn rounded-3 border-0"><i class="fa-solid fa-minus"></i></button>
+                </div>
+                <div class="col-2 d-flex justify-content-center align-items-center">
+                    <button class="btn btn-outline-danger mx-auto" (click)="removeFromCart(product.id)">
+                        Remove
+                    </button>
+                </div>
+                <div class="col-2 d-flex justify-content-center align-items-center">
+                    <p class="text-success p-0 m-0">{{product.price*product.quantity|applydiscount:product.discountPercentage|egpCurrency:31|currency:'EGP'}}</p>
+                </div>
+            </div>
+        </div>
+        <div class="card text-center my-3 text-success"><span class="h5">Total Price:</span> {{totalPrice|egpCurrency:31|currency: "EGP"}}</div>
+    </div>
+</div>
+
+<ng-template #emptyCart class="h100">
+    <div class="container d-flex w-100 h-100 justify-content-center align-items-center" style="height:500px !important">
+        <p class="h1">Cart Is Empty..</p>
+    </div>
+</ng-template>
