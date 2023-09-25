@@ -24,7 +24,8 @@ export class ProductCardComponent {
     this._Router.navigate(['product', id])
   }
 
-  addToCart(product: IProduct) {
-    this._ProductService.addToCart(product)
+  addToCart(id: number) {
+    this._ProductService.increaseProductQuantity(id)
+    this._ProductService.setCart()
   }
 }
