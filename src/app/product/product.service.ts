@@ -49,6 +49,7 @@ export class ProductService {
       return product
     })
     this.products.next(updatedProducts)
+    this.setCart()
   }
 
   decreaseProductQuantity(id: number) {
@@ -61,6 +62,7 @@ export class ProductService {
       return product
     })
     this.products.next(updatedProducts)
+    this.setCart()
   }
 
   removeFromCart(id: number) {

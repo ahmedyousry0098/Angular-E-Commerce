@@ -21,7 +21,7 @@
                 </div>
                 <p class="card-text desc-text">{{product.description}}</p>
             </div>
-            <button class="btn w-50 mx-auto mb-2" [disabled]="product.quantity>0" [class]="!product.quantity? 'btn-outline-success': 'btn-danger'" (click)="addToCart(product.id)">Add To Cart</button>
+            <button class="btn w-50 mx-auto mb-2" [disabled]="product.quantity>0" [class]="!product.quantity? 'btn-outline-success': 'btn-success'" (click)="addToCart(product.id)">Add To Cart</button>
         </div>
     </div>
 </div>

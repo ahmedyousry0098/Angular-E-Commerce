@@ -13,10 +13,12 @@ export class CartComponent {
   cart!: IProduct[]
   totalPrice: number = 0
   ngOnInit() {
-    this._ProductService.getCart().subscribe(cart => this.cart = cart)
-    this.totalPrice = this.cart.reduce((acc, curr) => {
-        return acc + ((curr.price*((100 - curr.discountPercentage)/100))*curr.quantity)
-      }, 0) 
+    this._ProductService.getCart().subscribe(cart => {
+      this.cart = cart
+      this.totalPrice = this.cart.reduce((acc, curr) => {
+          return acc + ((curr.price*((100 - curr.discountPercentage)/100))*curr.quantity)
+        }, 0) 
+    })
   }
 
   increaseQuantity(id: number) {
